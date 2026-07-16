@@ -25,10 +25,10 @@ python3 -m http.server 8080
 
 项目已包含 GitHub Actions 发布流程。推送到 GitHub 的 `main` 分支后，在仓库的 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**，之后每次推送都会自动发布。
 
-发布地址通常为：
+在线体验：
 
 ```text
-https://你的用户名.github.io/仓库名/
+https://sixtiger.github.io/gomoku-h5/
 ```
 
 ## 技术栈
