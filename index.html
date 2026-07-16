@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4ead7" />
+    <meta name="description" content="一款轻量、好玩的在线五子棋小游戏，支持人机对战和本地双人对战。" />
+    <title>五子棋 · 落子成诗</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow page-glow--top" aria-hidden="true"></div>
+    <div class="page-glow page-glow--bottom" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="hero">
+        <a class="brand" href="#" aria-label="五子棋首页">
+          <span class="brand__mark" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </span>
+          <span>
+            <strong>五子棋</strong>
+            <small>落子成诗，五子连珠</small>
+          </span>
+        </a>
+        <button class="icon-button" id="soundButton" type="button" aria-label="关闭落子音效" title="开关音效">
+          <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 5 6.8 8.4H3.5v7.2h3.3L11 19V5Zm4.2 4.2a4 4 0 0 1 0 5.6m2.7-8.3a7.8 7.8 0 0 1 0 11" />
+          </svg>
+          <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 5 6.8 8.4H3.5v7.2h3.3L11 19V5Zm4 5 5 5m0-5-5 5" />
+          </svg>
+        </button>
+      </header>
+
+      <section class="game-card" aria-label="五子棋游戏区">
+        <aside class="side-panel">
+          <div>
+            <p class="eyebrow">对弈模式</p>
+            <div class="mode-switch" role="group" aria-label="选择对弈模式">
+              <button class="mode-button is-active" type="button" data-mode="ai" aria-pressed="true">
+                <span class="mode-button__icon">✦</span>
+                人机对战
+              </button>
+              <button class="mode-button" type="button" data-mode="pvp" aria-pressed="false">
+                <span class="mode-button__icon">◉</span>
+                双人对战
+              </button>
+            </div>
+          </div>
+
+          <div class="turn-card" id="turnCard">
+            <div class="turn-card__topline">
+              <span>当前回合</span>
+              <span class="turn-card__badge" id="modeBadge">人机</span>
+            </div>
+            <div class="turn-card__player">
+              <span class="stone stone--black" id="turnStone" aria-hidden="true"></span>
+              <div>
+                <strong id="turnName">轮到你了</strong>
+                <small id="turnHint">执黑先行</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <p class="eyebrow">本地战绩</p>
+            <div class="stats__grid">
+              <div>
+                <strong id="leftWins">0</strong>
+                <span id="leftLabel">你</span>
+              </div>
+              <div>
+                <strong id="draws">0</strong>
+                <span>和棋</span>
+              </div>
+              <div>
+                <strong id="rightWins">0</strong>
+                <span id="rightLabel">电脑</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-panel__actions">
+            <button class="primary-button" id="newGameButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.4 5M4 4v5h5" /></svg>
+              重新开局
+            </button>
+            <button class="text-button" id="resetStatsButton" type="button">清空战绩</button>
+          </div>
+        </aside>
+
+        <div class="board-section">
+          <div class="board-toolbar">
+            <div class="status-line" aria-live="polite">
+              <span class="status-line__dot"></span>
+              <span id="statusText">黑方先行，请落子</span>
+            </div>
+            <button class="undo-button" id="undoButton" type="button" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5m-5-5h9a6 6 0 0 1 6 6" /></svg>
+              悔棋
+            </button>
+          </div>
+
+          <div class="board-frame" id="boardFrame">
+            <canvas id="gameBoard" role="img" aria-label="十五乘十五五子棋棋盘，点击棋盘交叉点落子"></canvas>
+            <div class="thinking" id="thinking" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="result-panel" id="resultPanel" hidden>
+              <span class="result-panel__icon" id="resultIcon">✦</span>
+              <p id="resultEyebrow">本局结束</p>
+              <h2 id="resultTitle">漂亮的一局！</h2>
+              <span id="resultSubtitle">黑方五子连珠</span>
+              <button class="primary-button" id="playAgainButton" type="button">再来一局</button>
+            </div>
+          </div>
+
+          <p class="board-tip"><span aria-hidden="true">⌁</span> 横、竖或斜线率先连成五子即可获胜</p>
+        </div>
+      </section>
+
+      <footer>
+        <span>无需下载 · 随时开局</span>
+        <span class="footer-dot">●</span>
+        <span>战绩仅保存在你的浏览器中</span>
+      </footer>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
